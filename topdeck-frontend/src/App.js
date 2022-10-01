@@ -15,7 +15,7 @@ class App extends Component {
      {/* <List /> */}
      {/* <Deck /> */}
      {/* <UpdatePg /> */}
-     <CreatePg />
+     {/* <CreatePg /> */}
     </div>
   );
 }
