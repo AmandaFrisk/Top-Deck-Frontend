@@ -4,6 +4,7 @@
 import React, {Component} from 'react'
 import CreateForm from "./create-form"
 import { Link } from 'react-router-dom';
+import UpdateForm from './update-form';
 let baseURL = ''
 
 if (process.env.NODE_ENV === 'development') {
@@ -48,12 +49,12 @@ componentDidMount(){
  handleAddDeck = (deck) => {
   //copy the entire name array to a new array
   const copyName = [...this.state.name];
-  
+
   copyName.unshift(deck);
   this.setState({name: copyName});
 };
 
-   
+
   render(){
   return (
     <div className='DeckList'>
@@ -62,12 +63,17 @@ componentDidMount(){
 <tbody>
   { this.state.name.map(deck=> {
       return (
+        <>
         <tr key={deck._id} >
-          {/* <td> {deck.name }</td> */}
           <td>
             <Link to='/view-single-deck'>{deck.name}</Link>
         </td>
+        <td>
+        <UpdateForm />
+        </td>
+    
         </tr>
+        </>
       )
     })
 
