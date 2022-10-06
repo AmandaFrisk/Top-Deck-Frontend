@@ -35,9 +35,8 @@ class Cards extends Component {
     }, () => {
       pokemon.card.where({ q: 'name:pikachu', pageSize: 5, page: 1 })
       .then(result => {
-        console.log(result.data[0].name)
+        
       })
-
     })
   }
 
