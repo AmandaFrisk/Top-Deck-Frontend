@@ -3,7 +3,7 @@ const Nav3 = () => {
   return (
     <nav className='nav3'>
       <div className='visit-decks-div'>
-        <a href='#'>My Decks</a>
+        {/*<a href='#'>My Decks</a>*/}
       </div>
 
     </nav>

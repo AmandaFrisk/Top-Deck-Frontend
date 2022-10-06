@@ -3,10 +3,10 @@ const Nav4 = () => {
   return (
     <nav className='nav4'>
       <div className='Back'>
-        <a href='#'>Back</a>
+        {/*<a href='#'>Back</a>*/}
       </div>
       <div className='add-to-deck'>
-        <a href='#'>Add to Deck</a>
+        {/*<a href='#'>Add to Deck</a>*/}
       </div>
 
     </nav>

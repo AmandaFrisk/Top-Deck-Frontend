@@ -6,8 +6,7 @@ class AllCards extends Component {
   render() {
     return (
       <div className='AllCards'>
-        <h1>View all cards here</h1>
-        /* importing data from API */
+        <h1>{this.props.data[0].name}</h1>
       </div>
     )
   }
