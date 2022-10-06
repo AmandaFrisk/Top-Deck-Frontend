@@ -48,12 +48,12 @@ componentDidMount(){
  handleAddDeck = (deck) => {
   //copy the entire name array to a new array
   const copyName = [...this.state.name];
-  
+
   copyName.unshift(deck);
   this.setState({name: copyName});
 };
 
-   
+
   render(){
   return (
     <div className='DeckList'>
@@ -79,5 +79,5 @@ componentDidMount(){
 }
 }
 
-  
+
   export default Decks;
