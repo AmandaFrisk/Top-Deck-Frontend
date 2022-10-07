@@ -1,7 +1,7 @@
 # Top-Deck
 
 
-The Top Deck application is a full-stack application that adhers to a MVC file structure with a full CRUD model. 
+The Top Deck application is a full-stack application that adhers to a MVC file structure with full CRUD. 
 The current application allows users to build their own Pokemon decks from a database of Pokemon cards.
 This includes cards from the base deck through Sword and Shield. They can update the name of their deck as well as as delete cards from their deck. 
 
