@@ -18,7 +18,7 @@ class CreateForm extends Component {
       //the way the element is being returned in the data -AF
       name: ''}
   }
-  // function called every keystroke -AF 
+  // function called every keystroke -AF
   handleChange = (event) => {
     //grabs value (what user types in) and writes them to state- AF
     this.setState({
@@ -42,24 +42,24 @@ class CreateForm extends Component {
       // if above works - backend server creates new element and sends us new element -AF
       //parse received string data back to res.json so we can use it
     }).then(res => res.json())
-    //now that we have res.Json 
+    //now that we have res.Json
     .then(resJson => {
       //set state using resJson
-        console.log('NewForm - resJson', resJson) 
-        //set back to default-so it clears entry 
+        console.log('NewForm - resJson', resJson)
+        //set back to default-so it clears entry
        this.props.handleAddDeck(resJson)
        this.setState({name: ''})
     })
   }
-  
+
   render () {
     return (
 <form onSubmit={this.handleSubmit}>
                 <label htmlFor="name">Name: </label>
-                <input 
-                    type="text" 
-                    id="name" 
-                    name="name" 
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
                     onChange={this.handleChange}
                     value={this.state.name}
                     placeholder="add a deck"
@@ -67,10 +67,10 @@ class CreateForm extends Component {
                 <input type="submit" value="Add a Deck to your list!" />
             </form>
         )
-    
+
   }
 }
 
 
-  
+
   export default CreateForm;

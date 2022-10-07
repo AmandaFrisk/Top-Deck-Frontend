@@ -72,7 +72,7 @@ componentDidMount(){
         <td>
         <UpdateForm />
         </td>
-    
+
         </tr>
         </>
       )
@@ -86,5 +86,5 @@ componentDidMount(){
 }
 }
 
-  
+
   export default Decks;
