@@ -5,7 +5,6 @@ import React, {Component} from 'react'
 import CreateForm from "./create-form"
 import { Link } from 'react-router-dom';
 import UpdateForm from './update-form';
-
 let baseURL = ''
 
 if (process.env.NODE_ENV === 'development') {
@@ -73,7 +72,7 @@ componentDidMount(){
         <td>
         <UpdateForm />
         </td>
-    
+
         </tr>
         </>
       )
@@ -87,5 +86,5 @@ componentDidMount(){
 }
 }
 
-  
+
   export default Decks;
