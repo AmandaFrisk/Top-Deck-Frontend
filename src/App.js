@@ -15,9 +15,9 @@ const App = () => {
         <Route path="/deck-lists" element={<List />} />
         <Route path="/view-single-deck" element={<ViewSingleDeck />} />
         <Route path="/view-all-cards" element={<Cards />} />
-        
-        
-        
+
+
+
       </Routes>
     </BrowserRouter>
   )
