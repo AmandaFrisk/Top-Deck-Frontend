@@ -1,9 +1,7 @@
 
 import {useEffect,useState} from 'react'
 import './index.css'
-import Nav3 from './components/nav3'
 import PokeCard from './components/all-cards'
-import Add from './components/add-card-btn' // we can move this if needbe
 import pokemon from 'pokemontcgsdk'
 
 
@@ -43,7 +41,6 @@ useEffect(() => {
 
     return (
       <>
-        <Nav3 />
         <h1>View All Cards Here!</h1>
         <div>
           {!data ? (
@@ -68,7 +65,6 @@ useEffect(() => {
                 </button>
             </div>
 
-        <Add />
 
       </>
     )
