@@ -65,6 +65,7 @@ componentDidMount(){
       return (
         <>
         <tr key={deck._id} >
+        
           <td>
             <Link to='/view-single-deck'>{deck.name}</Link>
         </td>
