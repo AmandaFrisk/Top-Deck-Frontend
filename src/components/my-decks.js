@@ -6,12 +6,13 @@ import CreateForm from "./create-form"
 import { Link } from 'react-router-dom';
 import UpdateForm from './update-form';
 import Cards from '../cards-page'
+import Delete from './delete-card'
 let baseURL = ''
 
 if (process.env.NODE_ENV === 'development') {
-  baseURL = 'http://localhost:3002/'
+  baseURL = 'http://localhost:3002'
 } else {
-  baseURL = 'https://topdeck-project3.herokuapp.com/'
+  baseURL = 'https://topdeck-project3.herokuapp.com'
 }
 
 
@@ -32,7 +33,7 @@ componentDidMount(){
   this.getDeck()
 }
  getDeck = () =>{
-  fetch(baseURL + 'decks')
+  fetch(baseURL + '/decks')
   .then((res) => {
     //if successful return json
     if (res.status === 200) {
@@ -55,6 +56,14 @@ componentDidMount(){
   this.setState({name: copyName});
 };
 
+handleClick=(deckId)=>{
+    fetch(baseURL + '/decks/' + deckId, {
+      method: "DELETE"
+    })
+      .then((response) => response.json())
+      .then((data) => {return data});
+  }
+
 
   render(){
 
@@ -75,6 +84,14 @@ componentDidMount(){
         </td>
         <td>
         <UpdateForm />
+        </td>
+        <td>
+        <Delete onClick={
+    ()=>
+      this.handleClick(deck._id)
+      // take off the quotes on cardId above
+
+    } />
         </td>
         <td>
           <Cards />

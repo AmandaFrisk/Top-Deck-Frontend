@@ -1,15 +1,15 @@
 //imports
 import React, {Component} from 'react'
 import './index.css';
-import Nav2 from './components/nav2';
+// import Nav2 from './components/nav2';
 //import DeckList from './components/deck-list';
-import Delete from './components/delete-card';
+import UpdateForm from './components/update-form.js';
 
 
-let baseURL = '';
+import baseUrl from "./baseUrl";
 
-if (process.env.NODE_ENV === 'development') {
-  baseURL = 'http://localhost:3002'}
+// if (process.env.NODE_ENV === 'development') {
+//   baseUrl = 'http://localhost:3002'}
 
 class Deck extends Component {
   constructor(props) {
@@ -19,33 +19,35 @@ class Deck extends Component {
   name: ''
     }
   }
-  //lifecycle - only run once when the component is mounted for the first time
-  componentDidMount(){
-    this.getDeck()
-  }
-   getDeck = () =>{
-    fetch(baseURL + 'decks')
-    .then((res) => {
-      //if successful return json
-      if (res.status === 200) {
-       return res.json();
-      } else {
-       return [];
-      }
-     })
-     .then((data) => {
-      console.log(data);
-      this.setState({ deck: data.decks });
-     });
-   }
 
-  handleClick=(cardId)=>{
-    fetch(`${baseURL}/cards/${cardId}`, {
-      method: "DELETE"
+  changeDeckName = (event) => {
+    this.props.onChangevent(
+      { [event.target.name]: event.target.value  }
+    );
+    this.setState({
+      [event.target.name]: event.target.value
     })
-      .then((response) => response.json())
-      .then((data) => {return data});
   }
+
+  onSubmit = (event) => {
+  event.preventDefault();
+  this.setState({
+    name: '',
+  });
+  this.props.onChange({
+    name: '',
+  })
+}
+
+editDeckClick=(deckId)=>{
+   fetch(`${baseUrl}/deck/${deckId}`, {
+     method: "PUT"
+     // will need to give this a body to update the name to the new name
+   })
+     .then((response) => response.json())
+     .then((data) => console.log(data));
+ }
+
  render(){
  return (
     <>
@@ -53,19 +55,27 @@ class Deck extends Component {
    <h1>{this.props.deck}</h1>
 
    {/* Delete needs to be applied to each card */}
-   <div>
-
-{('')
-  ?<Delete onClick={
-    ()=>
-      this.handleClick("cardId")
-      // take off the quotes on cardId above
-
-    } />
-    : ''
+  {/* <div>
+    <form
+    onSubmit={()=>
+      this.editDeckClick('deckId')}>
+    <input
+    name = 'name'
+    placeholder ='ENTER NEW DECK NAME'
+    value = {this.state.name}
+    id = 'deckId'
+    onChange = { (event)=>{
+      this.setState({
+        // this will keep our input field up to date
+        name: event.target.value
+      })
+      console.log(this.state.name)
+    }
   }
-
-   </div>
+   />
+    <label htmlFor='deckId'> Deck Name</label>
+    </form>
+  </div>*/}
 
    {/*<div>
     <DeckList />
