@@ -76,9 +76,9 @@ componentDidMount(){
         <td>
         <UpdateForm />
         </td>
-        <tr>
+        <td>
           <Cards />
-        </tr>
+        </td>
 
         </tr>
         </>
