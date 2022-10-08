@@ -9,10 +9,10 @@ class DeckList extends Component {
     return (
       <div className='DeckList'>
     {/* info for single deck list needs to come from db. AF   */}
-       <h1>DeckList Here</h1>
+       <h1>{this.props.deck.Name}</h1>
       </div>
     );
   }
   }
-  
+
   export default DeckList;

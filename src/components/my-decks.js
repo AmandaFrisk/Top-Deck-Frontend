@@ -5,6 +5,8 @@ import React, {Component} from 'react'
 import CreateForm from "./create-form"
 import { Link } from 'react-router-dom';
 import UpdateForm from './update-form';
+// import DeckList from './deck-list'
+import Cards from '../cards-page'
 let baseURL = ''
 
 if (process.env.NODE_ENV === 'development') {
@@ -56,18 +58,21 @@ componentDidMount(){
 
 
   render(){
+
   return (
+    <>
     <div className='DeckList'>
  <CreateForm  handleAddDeck={this.handleAddDeck}/>
+ <h1>DeckList</h1>
   <table>
 <tbody>
-  { this.state.name.map(deck=> {
+  { this.state.name.map(deck => {
       return (
         <>
         <tr key={deck._id} >
-        
+
           <td>
-            <Link to='/view-single-deck' className='deck-name-link'>{deck.name}</Link>
+            <h2>{deck.name}</h2>
         </td>
         <td>
         <UpdateForm />
@@ -82,6 +87,10 @@ componentDidMount(){
 </tbody>
 </table>
     </div>
+    <div>
+      <Cards />
+    </div>
+    </>
   );
 }
 }
