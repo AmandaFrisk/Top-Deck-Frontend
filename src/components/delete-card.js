@@ -5,7 +5,7 @@ const Delete = ({onClick}) => {
     return (
         <div onClick={onClick} style={{border: '1px solid black', margin: "5%", textAlign: "center"}}>
         {/* NEED TO FIGURE OUT HOW DELETE IS GOING TO WORK. DELETE NEEDS TO APPLY TO EACH CARD -AF */}
-        <div>Delete Card</div>
+        <div>Delete</div>
     </div>
     )
 }

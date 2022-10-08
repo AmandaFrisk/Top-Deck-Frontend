@@ -9,7 +9,7 @@ import pokemon from 'pokemontcgsdk'
 pokemon.configure({apiKey: `${process.env.REACT_APP_API_KEY}`})
 
 // let baseURL = ''
-
+//
 // if (process.env.NODE_ENV === 'development') {
 //   baseURL = 'http://localhost:3002'}
 
@@ -43,9 +43,9 @@ useEffect(() => {
      console.log(pageI);
  }
 
- 
 
-    return (
+    
+ return (
       <>
         <h1>View All Cards Here!</h1>
         <div>
@@ -56,7 +56,7 @@ useEffect(() => {
                       {data.map((pokemon) => (
                         <td>
                           <PokeCard pokemon={pokemon}></PokeCard>
-                          
+
                         </td>
                       ))}
                   </div>
