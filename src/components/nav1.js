@@ -1,13 +1,12 @@
 //This is imported in view-my-decks.js -AF
-
-
+import '../index.css';
 const Nav1 = () => {
     return (
         <nav className='nav1'>
         
              <div className='logo-nav1-div'>
-{/* Need to resize image -AF */}
-                <img className ='logo-mg'src='/images/Logo.png' alt='Top Deck Logo'/>
+
+                <img className ='logo-nav1'src='/images/Logo.png' alt='Top Deck Logo'/>
             </div>
            
         
