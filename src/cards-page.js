@@ -3,22 +3,28 @@ import {useEffect,useState} from 'react'
 import './index.css'
 import PokeCard from './components/all-cards'
 import pokemon from 'pokemontcgsdk'
+import Delete from './components/delete-card'
 
 
 pokemon.configure({apiKey: `${process.env.REACT_APP_API_KEY}`})
+
+let baseURL = ''
+
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:3002'}
 
 const Cards = () => {
   const [data, setData] = useState([])
   const [pageI, setPage] = useState(1)
 
 useEffect(() => {
-  pokemon.card.where({ pageSize: 5, page: pageI })
+  pokemon.card.where({ pageSize: 3, page: pageI })
   .then(result => result.data)
   .then((data) => setData(data))
 }, [])
 
   const search = async () =>  {
-    await pokemon.card.where({ pageSize: 5, page: pageI })
+    await pokemon.card.where({ pageSize: 3, page: pageI })
     .then(result => result.data)
     .then((data) => setData(data))
  }
@@ -37,6 +43,14 @@ useEffect(() => {
      console.log(pageI);
  }
 
+ const handleClick=(cardId)=>{
+    fetch(`${baseURL}/cards/${cardId}`, {
+      method: "DELETE"
+    })
+      .then((response) => response.json())
+      .then((data) => {return data});
+  }
+
 
 
     return (
@@ -48,7 +62,10 @@ useEffect(() => {
               ) : (
                   <div className='card-container'>
                       {data.map((pokemon) => (
+                        <td>
                           <PokeCard pokemon={pokemon}></PokeCard>
+                          
+                        </td>
                       ))}
                   </div>
           )}
