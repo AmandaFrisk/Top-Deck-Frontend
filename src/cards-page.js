@@ -3,15 +3,15 @@ import {useEffect,useState} from 'react'
 import './index.css'
 import PokeCard from './components/all-cards'
 import pokemon from 'pokemontcgsdk'
-import Delete from './components/delete-card'
+
 
 
 pokemon.configure({apiKey: `${process.env.REACT_APP_API_KEY}`})
 
-let baseURL = ''
+// let baseURL = ''
 
-if (process.env.NODE_ENV === 'development') {
-  baseURL = 'http://localhost:3002'}
+// if (process.env.NODE_ENV === 'development') {
+//   baseURL = 'http://localhost:3002'}
 
 const Cards = () => {
   const [data, setData] = useState([])
@@ -43,15 +43,7 @@ useEffect(() => {
      console.log(pageI);
  }
 
- const handleClick=(cardId)=>{
-    fetch(`${baseURL}/cards/${cardId}`, {
-      method: "DELETE"
-    })
-      .then((response) => response.json())
-      .then((data) => {return data});
-  }
-
-
+ 
 
     return (
       <>
@@ -72,7 +64,7 @@ useEffect(() => {
         </div>
 
         <div>
-                {pageI == 1 ? ('') : (
+                {pageI === 1 ? ('') : (
                     <button onClick={() => handleButtonClickB("back")} >
                         back
                     </button>
