@@ -11,4 +11,63 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* landing.js -AF */
+.landing-div {
+  text-align: center;
+  height: 250px;
+  width: 350;
+}
 
+.click-here-div{
+ 
+  margin: auto;
+  background-color: #011379;
+  height: 25px;
+  width: 243px;
+  border-radius: 30px;
+ 
+  
+}
+
+.click-text{
+text-decoration: none;
+color: white;
+}
+
+.description{
+  font-family: 'Press Start 2P', cursive;
+}
+/* nav 1 -AF */
+.logo-nav1{
+  width: 300px;
+  height: 50 px;
+}
+
+.logo-nav1-div{
+  text-align: center;
+}
+
+/* my-decks-js */
+.deck-name-link{
+  color: #FD2A2D;
+  text-decoration: none;
+  font-size: x-large;
+}
+.welcome{
+  color: #FD2A2D;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+}
+
+/* create-form.js */
+.create-submit-btn{
+  height: 38px;
+  width: 170px;
+  border-radius: 20px;
+  margin-left: 35px;
+  background-color:#FEC909;
+}
+
+.deck-name-label{
+  font-size: large;
+}

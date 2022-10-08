@@ -65,9 +65,9 @@ componentDidMount(){
       return (
         <>
         <tr key={deck._id} >
-
+        
           <td>
-            <Link to='/view-single-deck'>{deck.name}</Link>
+            <Link to='/view-single-deck' className='deck-name-link'>{deck.name}</Link>
         </td>
         <td>
         <UpdateForm />

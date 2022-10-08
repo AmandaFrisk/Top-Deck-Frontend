@@ -54,20 +54,21 @@ class CreateForm extends Component {
 
   render () {
     return (
+      <div className='create-div'>
 <form onSubmit={this.handleSubmit}>
-                <label htmlFor="name">Name: </label>
-                <input
+                <label htmlFor="name" className='deck-name-label'>DECK NAME: </label>
+                <input className='create-input'
                     type="text"
                     id="name"
                     name="name"
                     onChange={this.handleChange}
                     value={this.state.name}
-                    placeholder="add a deck"
                 />
-                <input type="submit" value="Add a Deck to your list!" />
+                <input type="submit" value="CREATE THE DECK" className='create-submit-btn' />
+            
             </form>
+</div>
         )
-
   }
 }
 

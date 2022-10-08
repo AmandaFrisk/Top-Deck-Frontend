@@ -9,8 +9,7 @@ class List extends Component {
  return (
     <>
      <Nav1 />
- 
-  <h1>MY DECKS</h1>
+ <h1 className='welcome'>WELCOME POKEMON CHAMPION</h1>
    <div>
     <Decks />
    </div>
