@@ -65,7 +65,7 @@ class CreateForm extends Component {
                     value={this.state.name}
                 />
                 <input type="submit" value="CREATE THE DECK" className='create-submit-btn' />
-            
+
             </form>
 </div>
         )

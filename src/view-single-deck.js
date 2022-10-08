@@ -4,13 +4,43 @@ import './index.css';
 import Nav2 from './components/nav2';
 //import DeckList from './components/deck-list';
 import Delete from './components/delete-card';
-import Decks from './components/my-decks'
 
-import baseUrl from "./baseUrl";
+
+let baseURL = '';
+
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:3002'}
 
 class Deck extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+
+  name: ''
+    }
+  }
+  //lifecycle - only run once when the component is mounted for the first time
+  componentDidMount(){
+    this.getDeck()
+  }
+   getDeck = () =>{
+    fetch(baseURL + 'decks')
+    .then((res) => {
+      //if successful return json
+      if (res.status === 200) {
+       return res.json();
+      } else {
+       return [];
+      }
+     })
+     .then((data) => {
+      console.log(data);
+      this.setState({ deck: data.decks });
+     });
+   }
+
   handleClick=(cardId)=>{
-    fetch(`${baseUrl}/cards/${cardId}`, {
+    fetch(`${baseURL}/cards/${cardId}`, {
       method: "DELETE"
     })
       .then((response) => response.json())
@@ -20,7 +50,7 @@ class Deck extends Component {
  return (
     <>
      {/*<Nav2 />*/}
-   <h1>MY DECKS</h1>
+   <h1>{this.props.deck}</h1>
 
    {/* Delete needs to be applied to each card */}
    <div>
@@ -36,9 +66,7 @@ class Deck extends Component {
   }
 
    </div>
-   <div>
-    <Decks />
-   </div>
+
    {/*<div>
     <DeckList />
    </div>*/}

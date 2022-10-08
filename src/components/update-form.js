@@ -65,7 +65,7 @@ class UpdateForm extends Component {
                     value={this.state.name}
                     placeholder="edit deck name"
                 />
-                <input type="submit" value="EDIT DECK NAME" />
+                <input type="submit" value="EDIT DECK NAME" className='create-submit-btn' />
             </form>
         )
 

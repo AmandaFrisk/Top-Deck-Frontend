@@ -12,13 +12,13 @@ const Cards = () => {
   const [pageI, setPage] = useState(1)
 
 useEffect(() => {
-  pokemon.card.where({ pageSize: 5, page: pageI })
+  pokemon.card.where({ pageSize: 3, page: pageI })
   .then(result => result.data)
   .then((data) => setData(data))
 }, [])
 
   const search = async () =>  {
-    await pokemon.card.where({ pageSize: 5, page: pageI })
+    await pokemon.card.where({ pageSize: 3, page: pageI })
     .then(result => result.data)
     .then((data) => setData(data))
  }
@@ -48,7 +48,9 @@ useEffect(() => {
               ) : (
                   <div className='card-container'>
                       {data.map((pokemon) => (
+                        <td>
                           <PokeCard pokemon={pokemon}></PokeCard>
+                        </td>
                       ))}
                   </div>
           )}

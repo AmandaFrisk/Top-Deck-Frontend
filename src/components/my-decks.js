@@ -5,7 +5,6 @@ import React, {Component} from 'react'
 import CreateForm from "./create-form"
 import { Link } from 'react-router-dom';
 import UpdateForm from './update-form';
-// import DeckList from './deck-list'
 import Cards from '../cards-page'
 let baseURL = ''
 
@@ -72,11 +71,14 @@ componentDidMount(){
         <tr key={deck._id} >
 
           <td>
-            <h2>{deck.name}</h2>
+            <Link to='/view-single-deck' className='deck-name-link'>{deck.name}</Link>
         </td>
         <td>
         <UpdateForm />
         </td>
+        <tr>
+          <Cards />
+        </tr>
 
         </tr>
         </>
@@ -87,9 +89,7 @@ componentDidMount(){
 </tbody>
 </table>
     </div>
-    <div>
-      <Cards />
-    </div>
+
     </>
   );
 }
