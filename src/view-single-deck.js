@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import './index.css';
 // import Nav2 from './components/nav2';
 //import DeckList from './components/deck-list';
-import UpdateForm from './components/update-form.js';
+// import UpdateForm from './components/update-form.js';
 
 
 import baseUrl from "./baseUrl";
@@ -21,7 +21,7 @@ class Deck extends Component {
   }
 
   changeDeckName = (event) => {
-    this.props.onChangevent(
+    this.props.onChange(
       { [event.target.name]: event.target.value  }
     );
     this.setState({
