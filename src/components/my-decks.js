@@ -3,10 +3,10 @@
 //imports
 import React, {Component} from 'react'
 import CreateForm from "./create-form"
-import { Link } from 'react-router-dom';
-import UpdateForm from './update-form';
-import Cards from '../cards-page'
-import Delete from './delete-card'
+// import { Link } from 'react-router-dom';
+// import UpdateForm from './update-form';
+// import Cards from '../cards-page'
+// import Delete from './delete-card'
 let baseURL = ''
 
 if (process.env.NODE_ENV === 'development') {
@@ -25,9 +25,8 @@ class Decks extends Component {
   this.state = {
     //expect data to come back as an array? - need to just have the name
 name: []
-  }
 }
-
+ }
 //lifecycle - only run once when the component is mounted for the first time
 componentDidMount(){
   this.getDeck()
@@ -43,27 +42,56 @@ componentDidMount(){
     }
    })
    .then((data) => {
-    console.log(data);
+    console.log("get deck data", data);
     this.setState({ deck: data.decks });
+    
+    // console.log('get deck setState', this.setState)
    });
  }
 
  handleAddDeck = (deck) => {
+ 
   //copy the entire name array to a new array
   const copyName = [...this.state.name];
 
+  // copyName.unshift(deck);
   copyName.unshift(deck);
   this.setState({name: copyName});
 };
 
-handleClick=(deckId)=>{
-    fetch(baseURL + '/decks/' + deckId, {
-      method: "DELETE"
-    })
-      .then((response) => response.json())
-      .then((data) => {return data});
-  }
+handleUpdateDeck = (deck) => {
+  fetch(baseURL + '/decks/' + deck._id, {
+    method: 'PUT',
+    // body to send data as a string - take data given(this.state.name) and wrap in double quotes to turn it into a json object-AF
+    body: JSON.stringify({name: this.state.name}),
+    // tell server we're sending application/json data
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(res => res.json())
+  //now that we have res.Json
+  // console.log(res.json())
+   .then(resJson => {
+    const copyNameAgain = [...this.state.name]
+    const findIndex = this.state.name.findIndex(deck => deck.name === resJson.name)
+    copyNameAgain[findIndex] = resJson
+    this.setState({name: copyNameAgain})
 
+
+
+    // this.setState({name : "Winning Deck" })
+   }) }
+ 
+  
+// handleClick=(deckId)=>{
+//     fetch(baseURL + '/decks' + deckId, {
+//       method: "DELETE"
+//     })
+//       .then((response) => response.json())
+//       .then((data) => {return data});
+//   }
+
+  
 
   render(){
 
@@ -71,34 +99,43 @@ handleClick=(deckId)=>{
     <>
     <div className='DeckList'>
  <CreateForm  handleAddDeck={this.handleAddDeck}/>
+ <div>
+ {/* <UpdateForm handleUpdateDeck={this.handleUpdateDeck}/> */}
+ </div>
  <h1>DeckList</h1>
   <table>
 <tbody>
-  { this.state.name.map(deck => {
+  { this.state.name.map((deck) => {
       return (
         <>
         <tr key={deck._id} >
 
-          <td>
-            <Link to='/view-single-deck' className='deck-name-link'>{deck.name}</Link>
+        {/* <td>
+        <UpdateForm handleUpdateDeck={this.handleUpdateDeck}/>
+
+        </td>  */}
+        <td
+          onClick={()=> this.handleUpdateDeck(deck)}
+          >{deck.name}
         </td>
-        <td>
-        <UpdateForm />
-        </td>
-        <td>
+       </tr>
+         {/* <td>
         <Delete onClick={
     ()=>
       this.handleClick(deck._id)
       // take off the quotes on cardId above
 
     } />
-        </td>
-        <td>
+        </td> 
+       </tr> */}
+{/*         
+         <tr> 
+         <td>
           <Cards />
-        </td>
+        </td> 
 
-        </tr>
-        </>
+         </tr>  */}
+         </> 
       )
     })
 

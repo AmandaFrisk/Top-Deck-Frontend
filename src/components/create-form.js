@@ -14,16 +14,19 @@ if (process.env.NODE_ENV === 'development') {
 class CreateForm extends Component {
   constructor(props){
     super(props)
+    // console.log('super props',props)
     this.state = {
       //the way the element is being returned in the data -AF
       name: ''}
   }
+  
   // function called every keystroke -AF
   handleChange = (event) => {
     //grabs value (what user types in) and writes them to state- AF
     this.setState({
       name: event.target.value
     })
+    // console.log('handleChange', event.target.value)
   }
   //called when user submits the form - post and update state - AF
   //event so we can call event.preventDefault()- AF
@@ -31,6 +34,8 @@ class CreateForm extends Component {
     // prevent refresh default- so fetch will run -AF
     event.preventDefault()
     //make fetch to post to the backend -AF
+    // console.log("create what is event", event)
+
     fetch(baseURL + '/decks', {
       method: 'POST',
       // body to send data as a string - take data given(this.state.name) and wrap in double quotes to turn it into a json object-AF
