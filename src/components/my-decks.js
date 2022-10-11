@@ -25,7 +25,8 @@ class Decks extends Component {
     //expect data to come back as an array? - need to just have the name
 name: [],
 //set this as a boolean so we can change it on lines 103- 106
-winner: false
+winner: false,
+deleted: ''
 }
  }
 //lifecycle - only run once when the component is mounted for the first time
@@ -34,7 +35,7 @@ componentDidMount(){
 }
  getDeck = () =>{
   fetch(baseURL + '/decks')
-  //if fetch works 
+  //if fetch works
   .then((res) => {
     //if response is successful return json
     if (res.status === 200) {
@@ -77,8 +78,16 @@ handleUpdateDeck = (deck) => {
  })}
 
 
+ handleDelete = (deck) => {
+  console.log('inside handle Delete function');
+  fetch('https://topdeck-project3.herokuapp.com/decks/' + deck._id, {
+    method: 'DELETE'
+  })
+  .then((response) => this.setState({deleted:true}))
+  .then((data) => console.log(data))
+}
 
-  render(){
+ render(){
 
   return (
     <>
@@ -91,9 +100,11 @@ handleUpdateDeck = (deck) => {
   { this.state.name.map((deck) => {
       return (
         <>
-        <tr key={deck._id} >
 
-        {/* if value of winner is true render winner. User clicks on deck name and deck name is changed to winner */}
+        <tr key={deck._id} >
+        {this.state.deleted ? '' :
+        
+        {/* value of winner is true render winner. User clicks on deck name and deck name is changed to winner */}
         { this.state.winner ? <td
           onClick={()=> this.handleUpdateDeck(deck)}
           >{'winner'}
@@ -116,10 +127,10 @@ handleUpdateDeck = (deck) => {
          {/* <tr> 
          <td>
           <Cards />
-        </td> 
-
-         </tr>  */}
-         </> 
+        </td>
+        </>}
+         </tr>
+         </>
       )
     })
 
