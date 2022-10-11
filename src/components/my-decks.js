@@ -24,7 +24,9 @@ class Decks extends Component {
   super(props)
   this.state = {
     //expect data to come back as an array? - need to just have the name
-name: []
+name: [],
+//set this as a boolean so we can change it on lines 103- 106
+winner: false
 }
  }
 //lifecycle - only run once when the component is mounted for the first time
@@ -33,24 +35,26 @@ componentDidMount(){
 }
  getDeck = () =>{
   fetch(baseURL + '/decks')
+  //if fetch works 
   .then((res) => {
-    //if successful return json
+    //if response is successful return json
     if (res.status === 200) {
      return res.json();
+     //else it was not successful
     } else {
      return [];
     }
    })
    .then((data) => {
     console.log("get deck data", data);
-    this.setState({ deck: data.decks });
-    
-    // console.log('get deck setState', this.setState)
+    //setState to be that data
+    this.setState({ deck: data.lists });
+  console.log(data.lists)
    });
  }
 
  handleAddDeck = (deck) => {
- 
+ console.log(" first deck inside handleAddDeck", deck)
   //copy the entire name array to a new array
   const copyName = [...this.state.name];
 
@@ -60,38 +64,18 @@ componentDidMount(){
 };
 
 handleUpdateDeck = (deck) => {
-  fetch(baseURL + '/decks/' + deck._id, {
-    method: 'PUT',
-    // body to send data as a string - take data given(this.state.name) and wrap in double quotes to turn it into a json object-AF
-    body: JSON.stringify({name: this.state.name}),
+  // console.log("handleUpdateDeck", deck)
+
+ fetch('https://topdeck-project3.herokuapp.com/decks/'  + deck._id, {
+  method: 'PUT',
+  body: JSON.stringify({name: 'Winner'}),
     // tell server we're sending application/json data
     headers: {
       'Content-Type': 'application/json'
     }
-  }).then(res => res.json())
-  //now that we have res.Json
-  // console.log(res.json())
-   .then(resJson => {
-    const copyNameAgain = [...this.state.name]
-    const findIndex = this.state.name.findIndex(deck => deck.name === resJson.name)
-    copyNameAgain[findIndex] = resJson
-    this.setState({name: copyNameAgain})
-
-
-
-    // this.setState({name : "Winning Deck" })
-   }) }
- 
-  
-// handleClick=(deckId)=>{
-//     fetch(baseURL + '/decks' + deckId, {
-//       method: "DELETE"
-//     })
-//       .then((response) => response.json())
-//       .then((data) => {return data});
-//   }
-
-  
+ }).then(r => {
+  this.setState({ winner : true})
+ })}
 
   render(){
 
@@ -99,9 +83,7 @@ handleUpdateDeck = (deck) => {
     <>
     <div className='DeckList'>
  <CreateForm  handleAddDeck={this.handleAddDeck}/>
- <div>
- {/* <UpdateForm handleUpdateDeck={this.handleUpdateDeck}/> */}
- </div>
+
  <h1>DeckList</h1>
   <table>
 <tbody>
@@ -110,14 +92,14 @@ handleUpdateDeck = (deck) => {
         <>
         <tr key={deck._id} >
 
-        {/* <td>
-        <UpdateForm handleUpdateDeck={this.handleUpdateDeck}/>
-
-        </td>  */}
-        <td
+        {/* if value of winner is true render winner. User clicks on deck name and deck name is changed to winner */}
+        { this.state.winner ? <td
+          onClick={()=> this.handleUpdateDeck(deck)}
+          >{'winner'}
+        </td>: <td
           onClick={()=> this.handleUpdateDeck(deck)}
           >{deck.name}
-        </td>
+        </td> }
        </tr>
          {/* <td>
         <Delete onClick={
@@ -128,8 +110,8 @@ handleUpdateDeck = (deck) => {
     } />
         </td> 
        </tr> */}
-{/*         
-         <tr> 
+        
+         {/* <tr> 
          <td>
           <Cards />
         </td> 
