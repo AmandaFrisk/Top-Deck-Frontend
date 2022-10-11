@@ -15,7 +15,6 @@ if (process.env.NODE_ENV === 'development') {
   baseURL = 'https://topdeck-project3.herokuapp.com'
 }
 
-
 console.log('current base URL:', baseURL)
 
 class Decks extends Component {
@@ -112,6 +111,7 @@ handleUpdateDeck = (deck) => {
        </tr> */}
 
          {/* <tr>
+>>>>>>> e37ede4 (merge)
          <td>
           <Cards />
         </td>
