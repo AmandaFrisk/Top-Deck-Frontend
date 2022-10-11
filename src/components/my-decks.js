@@ -5,7 +5,7 @@ import React, {Component} from 'react'
 import CreateForm from "./create-form"
 // import { Link } from 'react-router-dom';
 // import UpdateForm from './update-form';
-// import Cards from '../cards-page'
+import Cards from '../cards-page'
 // import Delete from './delete-card'
 let baseURL = ''
 
@@ -26,7 +26,8 @@ class Decks extends Component {
     //expect data to come back as an array? - need to just have the name
 name: [],
 //set this as a boolean so we can change it on lines 103- 106
-winner: false
+winner: false,
+deleted: ''
 }
  }
 //lifecycle - only run once when the component is mounted for the first time
@@ -77,6 +78,15 @@ handleUpdateDeck = (deck) => {
   this.setState({ winner : true})
  })}
 
+ handleDelete = (deck) => {
+   console.log('inside handle Delete function');
+   fetch('https://topdeck-project3.herokuapp.com/decks/' + deck._id, {
+     method: 'DELETE'
+   })
+   .then((response) => this.setState({deleted:true}))
+   .then((data) => console.log(data))
+ }
+
   render(){
 
   return (
@@ -90,8 +100,10 @@ handleUpdateDeck = (deck) => {
   { this.state.name.map((deck) => {
       return (
         <>
-        <tr key={deck._id} >
 
+        <tr key={deck._id} >
+        {this.state.deleted ? '' :
+        <>
         {/* if value of winner is true render winner. User clicks on deck name and deck name is changed to winner */}
         { this.state.winner ? <td
           onClick={()=> this.handleUpdateDeck(deck)}
@@ -100,7 +112,11 @@ handleUpdateDeck = (deck) => {
           onClick={()=> this.handleUpdateDeck(deck)}
           >{deck.name}
         </td> }
-       </tr>
+
+        <td>
+          <button onClick={() => this.handleDelete(deck)} className='create-submit-btn'>DELETE</button>
+        </td>
+
          {/* <td>
         <Delete onClick={
     ()=>
@@ -111,12 +127,12 @@ handleUpdateDeck = (deck) => {
         </td>
        </tr> */}
 
-         {/* <tr>
+
          <td>
           <Cards />
         </td>
-        
-         </tr>  */}
+        </>}
+         </tr>
          </>
       )
     })
