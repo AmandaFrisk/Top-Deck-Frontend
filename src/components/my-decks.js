@@ -25,6 +25,7 @@ class Decks extends Component {
   this.state = {
     //expect data to come back as an array? - need to just have the name
 name: [],
+//set this as a boolean so we can change it on lines 103- 106
 winner: false
 }
  }
@@ -63,8 +64,7 @@ componentDidMount(){
 };
 
 handleUpdateDeck = (deck) => {
-  console.log("handleUpdateDeck", deck)
- // This a put test
+  // console.log("handleUpdateDeck", deck)
 
  fetch('https://topdeck-project3.herokuapp.com/decks/'  + deck._id, {
   method: 'PUT',
@@ -76,65 +76,6 @@ handleUpdateDeck = (deck) => {
  }).then(r => {
   this.setState({ winner : true})
  })}
-//   fetch(baseURL + '/decks/' + deck._id, {
-//     method: 'PUT',
-//     // body to send data as a string - take data given(this.state.name) and wrap in double quotes to turn it into a json object-AF
-//     body: JSON.stringify({name: this.state.name}),
-//     // tell server we're sending application/json data
-//     headers: {
-//       'Content-Type': 'application/json'
-//     }
-//   }).then(res => res.json())
-//   //now that we have res.Json
-//   // console.log(res.json())
-//  .then ( console.log('inside update.then'))
-//  .then(resJson => {
-//   const copyNameAgain = [...this.state.lists]
-//   const findIndex = this.state.lists.findIndex(
-//   (deck) => deck._id === resJson._id)
-  
-//   copyNameAgain[findIndex].this.state.lists = resJson.name
-  
-//   this.setState({lists: copyNameAgain })
-
-//         // console.log('resJson', resJson);
-// 				// const copyNameAgain = [...this.state.name];
-// 				// const findIndex = this.state.name.findIndex(
-// 				// 	(deck) => deck._id === resJson._id
-// 				// );
-// 				// copyNameAgain[findIndex].this.state.name = resJson.name;
-        
-        
-// 				// this.setState({ name: copyNameAgain }); 
-       
-          
-          
-        
-//     }).catch (error => console.error({'Error': error}))
-//     //window.location.reload() this is optional if it works but does not reload
-//   }
-
-    // console.log("in handleUpdateDeck .then")
-    // resJson => {
-    // const copyNameAgain = [...this.state.name]
-    // const findIndex = this.state.name.findIndex(deck => deck._id === resJson._id)
-    // copyNameAgain[findIndex].this.state.name = resJson.this.state.name 
-    // this.setState({name: this.state.name +  " winning deck" })
-  //  )
-    // }  )
-  // }
-    // this.setState({name : "Winning Deck" })
-  //  }) }
- 
-  
-// handleClick=(deckId)=>{
-//     fetch(baseURL + '/decks' + deckId, {
-//       method: "DELETE"
-//     })
-//       .then((response) => response.json())
-//       .then((data) => {return data});   }
-
-  
 
   render(){
 
@@ -142,9 +83,7 @@ handleUpdateDeck = (deck) => {
     <>
     <div className='DeckList'>
  <CreateForm  handleAddDeck={this.handleAddDeck}/>
- <div>
- {/* <UpdateForm handleUpdateDeck={this.handleUpdateDeck}/> */}
- </div>
+
  <h1>DeckList</h1>
   <table>
 <tbody>
@@ -153,11 +92,7 @@ handleUpdateDeck = (deck) => {
         <>
         <tr key={deck._id} >
 
-        {/* <td>
-        <UpdateForm handleUpdateDeck={this.handleUpdateDeck}/>
-
-        </td>  */}
-        {/* if value of winner is true render winner */}
+        {/* if value of winner is true render winner. User clicks on deck name and deck name is changed to winner */}
         { this.state.winner ? <td
           onClick={()=> this.handleUpdateDeck(deck)}
           >{'winner'}
@@ -175,8 +110,8 @@ handleUpdateDeck = (deck) => {
     } />
         </td> 
        </tr> */}
-{/*         
-         <tr> 
+        
+         {/* <tr> 
          <td>
           <Cards />
         </td> 
