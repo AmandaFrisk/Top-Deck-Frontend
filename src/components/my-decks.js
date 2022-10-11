@@ -4,7 +4,6 @@
 import React, {Component} from 'react'
 import CreateForm from "./create-form"
 // import { Link } from 'react-router-dom';
-// import UpdateForm from './update-form';
 // import Cards from '../cards-page'
 // import Delete from './delete-card'
 let baseURL = ''
@@ -64,7 +63,7 @@ componentDidMount(){
 };
 
 handleUpdateDeck = (deck) => {
-  // console.log("handleUpdateDeck", deck)
+  console.log("handleUpdateDeck", deck)
 
  fetch('https://topdeck-project3.herokuapp.com/decks/'  + deck._id, {
   method: 'PUT',
@@ -76,6 +75,8 @@ handleUpdateDeck = (deck) => {
  }).then(r => {
   this.setState({ winner : true})
  })}
+
+
 
   render(){
 
@@ -101,6 +102,7 @@ handleUpdateDeck = (deck) => {
           >{deck.name}
         </td> }
        </tr>
+       <tr>
          {/* <td>
         <Delete onClick={
     ()=>
@@ -108,8 +110,8 @@ handleUpdateDeck = (deck) => {
       // take off the quotes on cardId above
 
     } />
-        </td> 
-       </tr> */}
+        </td>  */}
+       </tr>
         
          {/* <tr> 
          <td>
