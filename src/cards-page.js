@@ -44,7 +44,7 @@ useEffect(() => {
  }
 
 
-    
+
  return (
       <>
         <h1>View All Cards Here!</h1>
@@ -54,10 +54,10 @@ useEffect(() => {
               ) : (
                   <div className='card-container'>
                       {data.map((pokemon) => (
-                        <td>
+                        <tr>
                           <PokeCard pokemon={pokemon}></PokeCard>
 
-                        </td>
+                        </tr>
                       ))}
                   </div>
           )}
