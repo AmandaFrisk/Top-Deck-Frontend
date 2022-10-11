@@ -18,15 +18,23 @@ Initial Wireframe:
 
 
 Current Wireframe:
-
+Landing Page: 
+![Screen Shot 2022-10-11 at 3 56 06 PM](https://user-images.githubusercontent.com/104706798/195205649-9245562a-0b64-457e-ab5e-38e410933080.png)
+Main Page ( my-decks.js):
+![Screen Shot 2022-10-11 at 3 56 44 PM](https://user-images.githubusercontent.com/104706798/195205737-97edc22e-52bd-42cf-ae87-51fbba618dc9.png)
+Created a deck by user inputing a name and then clicking the 'create the deck' button:
+![Screen Shot 2022-10-11 at 3 58 18 PM](https://user-images.githubusercontent.com/104706798/195205969-7aaa28de-0b4f-4206-85c1-ddfa130b3ae6.png)
+Updated deck name to say "winner" when deck name is clicked on: 
+![Screen Shot 2022-10-11 at 3 58 45 PM](https://user-images.githubusercontent.com/104706798/195206016-35504894-7778-4fed-a900-71a99cbb773f.png)
+Deleted a deck by clicking on the delete button:
+![Screen Shot 2022-10-11 at 3 59 00 PM](https://user-images.githubusercontent.com/104706798/195206040-932756f3-400a-42a7-8a2f-78284f6e75e7.png)
 
 
 User Stories:
-As a user I want to create a deck by giving it a specific name so that I know which deck to add specific cards to. |
-As a user I want to edit the name of a deck so that it's name better matches my preferences.|
-As a user I want to see the Pokemon cards so that I know what is available for selection. |
-As a user I want to add a card to my deck so that I can have a list of cards within specific decks.|
-As a user I want to delete a card from my deck so that the card is no longer part of the specific deck list.
+As a user I want to create a deck by giving it a specific name so that it is personalized. |
+As a user I want to edit the name of a deck so that it changes to being called winner.|
+As a user I want to see the Pokemon cards so that I know what is available . |
+As a user I want to delete a deck name from the deck list.
 
 
 Technologies Used:
