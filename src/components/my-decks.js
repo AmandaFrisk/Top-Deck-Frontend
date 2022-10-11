@@ -67,7 +67,7 @@ componentDidMount(){
 handleUpdateDeck = (deck) => {
   // console.log("handleUpdateDeck", deck)
 
- fetch('https://topdeck-project3.herokuapp.com/decks/'  + deck._id, {
+ fetch('https://topdeck-project3.herokuapp.com/decks/' + deck._id, {
   method: 'PUT',
   body: JSON.stringify({name: 'Winner'}),
     // tell server we're sending application/json data
