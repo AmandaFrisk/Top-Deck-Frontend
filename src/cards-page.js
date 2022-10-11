@@ -54,10 +54,10 @@ useEffect(() => {
               ) : (
                   <div className='card-container'>
                       {data.map((pokemon) => (
-                        <tr>
+                        <td>
                           <PokeCard pokemon={pokemon}></PokeCard>
 
-                        </tr>
+                        </td>
                       ))}
                   </div>
           )}
