@@ -4,9 +4,9 @@ let baseURL = ''
 
 if (process.env.NODE_ENV === 'development') {
   // baseURL = 'http://localhost:3002'}
-  baseURL = 'https://topdeck-project3.herokuapp.com'
+  baseURL = process.env.REACT_APP_BACKEND_URL
 } else {
-  baseURL = 'https://topdeck-project3.herokuapp.com/'
+  baseURL = process.env.REACT_APP_BACKEND_URL
 }
 
 
@@ -19,7 +19,7 @@ class CreateForm extends Component {
       //the way the element is being returned in the data -AF
       name: ''}
   }
-  
+
   // function called every keystroke -AF
   handleChange = (event) => {
     //grabs value (what user types in) and writes them to state- AF
