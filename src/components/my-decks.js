@@ -12,7 +12,7 @@ let baseURL = ''
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3002'
 } else {
-  baseURL = process.env.REACT_APP_BACKEND_URL
+  baseURL = 'https://topdeck-project3.herokuapp.com'
 }
 
 
@@ -67,7 +67,7 @@ componentDidMount(){
 handleUpdateDeck = (deck) => {
   // console.log("handleUpdateDeck", deck)
 
- fetch(baseURL + '/' + deck._id, {
+ fetch('https://topdeck-project3.herokuapp.com/decks/' + deck._id, {
   method: 'PUT',
   body: JSON.stringify({name: 'Winner'}),
     // tell server we're sending application/json data
@@ -80,7 +80,7 @@ handleUpdateDeck = (deck) => {
 
  handleDelete = (deck) => {
    console.log('inside handle Delete function');
-   fetch(baseURL + '/' + deck._id, {
+   fetch('https://topdeck-project3.herokuapp.com/decks/' + deck._id, {
      method: 'DELETE'
    })
    .then((response) => this.setState({deleted:true}))

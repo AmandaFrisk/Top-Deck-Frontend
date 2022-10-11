@@ -4,9 +4,9 @@ let baseURL = ''
 
 if (process.env.NODE_ENV === 'development') {
   // baseURL = 'http://localhost:3002'}
-  baseURL = process.env.REACT_APP_BACKEND_URL
+  baseURL = 'https://topdeck-project3.herokuapp.com'
 } else {
-  baseURL = process.env.REACT_APP_BACKEND_URL
+  baseURL = 'https://topdeck-project3.herokuapp.com'
 }
 
 
