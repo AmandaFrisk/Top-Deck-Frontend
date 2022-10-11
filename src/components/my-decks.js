@@ -14,7 +14,6 @@ if (process.env.NODE_ENV === 'development') {
 } else {
   baseURL = 'https://topdeck-project3.herokuapp.com'
 }
-
 let dataS = []
 
 console.log('current base URL:', baseURL)
@@ -36,7 +35,7 @@ componentDidMount(){
 }
  getDeck = () =>{
   fetch(baseURL + '/decks')
-  //if fetch works 
+  //if fetch works
   .then((res) => {
     //if response is successful return json
     if (res.status === 200) {
@@ -48,30 +47,20 @@ componentDidMount(){
    })
    .then((data) => {
     console.log("get deck data", data);
-<<<<<<< HEAD
     //setState to be that data
     this.setState({ deck: data.lists });
   console.log(data.lists)
-=======
-    this.setState({ deck: data.decks });
-    return dataS = data
->>>>>>> 7baf362 (merge conflicts)
    });
  }
 
  handleAddDeck = (deck) => {
-<<<<<<< HEAD
  console.log(" first deck inside handleAddDeck", deck)
-=======
-
->>>>>>> 7baf362 (merge conflicts)
   //copy the entire name array to a new array
   const copyName = [...this.state.name];
 
   // copyName.unshift(deck);
   copyName.unshift(deck);
   this.setState({name: copyName});
-  console.log(dataS);
 };
 
 handleUpdateDeck = (deck) => {
@@ -84,36 +73,9 @@ handleUpdateDeck = (deck) => {
     headers: {
       'Content-Type': 'application/json'
     }
-<<<<<<< HEAD
  }).then(r => {
   this.setState({ winner : true})
  })}
-=======
-  }).then(res => res.json())
-  //now that we have res.Json
-  // console.log(res.json())
-   .then(resJson => {
-    const copyNameAgain = [...this.state.name]
-    const findIndex = this.state.name.findIndex(deck => deck.name === resJson.name)
-    copyNameAgain[findIndex] = resJson
-    this.setState({name: copyNameAgain})
-
-
-
-    // this.setState({name : "Winning Deck" })
-   }) }
-
-
-// handleClick=(deckId)=>{
-//     fetch(baseURL + '/decks' + deckId, {
-//       method: "DELETE"
-//     })
-//       .then((response) => response.json())
-//       .then((data) => {return dataS = data});
-//   }
-
-
->>>>>>> 7baf362 (merge conflicts)
 
   render(){
 
@@ -148,13 +110,8 @@ handleUpdateDeck = (deck) => {
     } />
         </td>
        </tr> */}
-<<<<<<< HEAD
-        
-         {/* <tr> 
-=======
-{/*
-         <tr>
->>>>>>> 7baf362 (merge conflicts)
+
+         {/* <tr>
          <td>
           <Cards />
         </td>
