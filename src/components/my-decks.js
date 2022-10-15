@@ -85,6 +85,7 @@ handleUpdateDeck = (deck) => {
     }
  }).then(r => {
   const copyDecks = [...this.state.decks];
+  deck.name = 'Winner'
   this.setState({ decks : copyDecks})
  })}
 
