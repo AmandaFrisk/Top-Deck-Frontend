@@ -25,7 +25,7 @@ class Decks extends Component {
   super(props)
   this.state = {
     //expect data to come back as an array? - need to just have the name
-name: [],
+decks: [],
 //set this as a boolean so we can change it on lines 103- 106
 winner: false,
 deleted: ''
@@ -48,10 +48,16 @@ componentDidMount(){
     }
    })
    .then((data) => {
-    console.log("get deck data", data);
-    //setState to be that data
-    this.setState({ deck: data.lists });
-    console.log(data)
+    // console.log("get deck data", data);
+    // //setState to be that data
+    // this.setState({ deck: data.lists });
+    // console.log(data)
+    // return dataS = data.lists
+    // if(data === []) {
+    //   this.setState({decks: data})
+    // } else {
+      this.setState({decks: data.lists})
+    // }
     return dataS = data.lists
    });
  }
@@ -59,12 +65,12 @@ componentDidMount(){
  handleAddDeck = (deck) => {
  console.log(" first deck inside handleAddDeck", deck)
   //copy the entire name array to a new array
-  const copyName = [...this.state.name];
+  const copyDecks = [...this.state.decks];
 
-  // copyName.unshift(deck);
-  copyName.unshift(deck);
-  this.setState({name: copyName});
-  console.log(dataS)
+  // copyDeck.unshift(deck);
+  copyDecks.unshift(deck);
+  this.setState({decks: copyDecks});
+  console.log(this.state.decks)
 };
 
 handleUpdateDeck = (deck) => {
@@ -100,7 +106,7 @@ handleUpdateDeck = (deck) => {
       <h1>DeckList</h1>
       <table>
         <tbody>
-          { dataS.map((deck) => {
+          { this.state.decks.map((deck) => {
             return (
               <>
 
