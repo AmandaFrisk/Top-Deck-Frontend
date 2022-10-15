@@ -9,12 +9,13 @@ import Cards from '../cards-page'
 // import Delete from './delete-card'
 let baseURL = ''
 
-if (process.env.NODE_ENV === 'development') {
-  baseURL = 'http://localhost:3002'
-} else {
+// if (process.env.NODE_ENV === 'development') {
+//   baseURL = 'http://localhost:3002'
+// } else {
   baseURL = 'https://topdeck-project3.herokuapp.com'
-}
+// }
 
+let dataS = []
 
 console.log('current base URL:', baseURL)
 
@@ -24,9 +25,9 @@ class Decks extends Component {
   super(props)
   this.state = {
     //expect data to come back as an array? - need to just have the name
-name: [],
+decks: [],
 //set this as a boolean so we can change it on lines 103- 106
-winner: false,
+// winner: false,
 deleted: ''
 }
  }
@@ -47,21 +48,29 @@ componentDidMount(){
     }
    })
    .then((data) => {
-    console.log("get deck data", data);
-    //setState to be that data
-    this.setState({ deck: data.lists });
-  console.log(data.lists)
+    // console.log("get deck data", data);
+    // //setState to be that data
+    // this.setState({ deck: data.lists });
+    // console.log(data)
+    // return dataS = data.lists
+    // if(data === []) {
+    //   this.setState({decks: data})
+    // } else {
+      this.setState({decks: data.lists})
+    // }
+    return dataS = data.lists
    });
  }
 
  handleAddDeck = (deck) => {
  console.log(" first deck inside handleAddDeck", deck)
   //copy the entire name array to a new array
-  const copyName = [...this.state.name];
+  const copyDecks = [...this.state.decks];
 
-  // copyName.unshift(deck);
-  copyName.unshift(deck);
-  this.setState({name: copyName});
+  // copyDeck.unshift(deck);
+  copyDecks.unshift(deck);
+  this.setState({decks: copyDecks});
+  console.log(this.state.decks)
 };
 
 handleUpdateDeck = (deck) => {
@@ -75,15 +84,24 @@ handleUpdateDeck = (deck) => {
       'Content-Type': 'application/json'
     }
  }).then(r => {
-  this.setState({ winner : true})
+  const copyDecks = [...this.state.decks];
+  deck.name = 'Winner'
+  this.setState({ decks : copyDecks})
  })}
 
- handleDelete = (deck) => {
+ handleDelete = (id) => {
    console.log('inside handle Delete function');
-   fetch('https://topdeck-project3.herokuapp.com/decks/' + deck._id, {
+   fetch('https://topdeck-project3.herokuapp.com/decks/' + id, {
      method: 'DELETE'
    })
-   .then((response) => this.setState({deleted:true}))
+   .then((response) => {
+    const copyDecks = [...this.state.decks];
+    const deckIndex = this.state.decks.findIndex(
+      (deck) => deck._id === id
+    )
+    copyDecks.splice(deckIndex, 1)
+    this.setState({ decks : copyDecks})
+   })
    .then((data) => console.log(data))
  }
 
@@ -92,54 +110,44 @@ handleUpdateDeck = (deck) => {
   return (
     <>
     <div className='DeckList'>
- <CreateForm  handleAddDeck={this.handleAddDeck}/>
+      <CreateForm  handleAddDeck={this.handleAddDeck}/>
 
- <h1>DeckList</h1>
-  <table>
-<tbody>
-  { this.state.name.map((deck) => {
-      return (
-        <>
+      <h1>DeckList</h1>
+      <table>
+        <tbody>
+          { this.state.decks.map((deck) => {
+            return (
+              <>
 
-        <tr key={deck._id} >
-        {this.state.deleted ? '' :
-        <>
-        {/* if value of winner is true render winner. User clicks on deck name and deck name is changed to winner */}
-        { this.state.winner ? <td
-          onClick={()=> this.handleUpdateDeck(deck)}
-          >{'winner'}
-        </td>: <td
-          onClick={()=> this.handleUpdateDeck(deck)}
-          >{deck.name}
-        </td> }
+                <tr key={deck._id} >
+                  {/* {this.state.deleted ? '' : */}
+                    {/* <> */}
+                    {/* if value of winner is true render winner. User clicks on deck name and deck name is changed to winner */}
+                    {/* { this.state.winner ? <td
+                      onClick={()=> this.handleUpdateDeck(deck)}
+                     >{'winner'}
+                      </td>:  */}
+                      <td onClick={()=> this.handleUpdateDeck(deck)}
+                       >{deck.name}
+                      </td> 
+                      {/* } */}
 
-        <td>
-          <button onClick={() => this.handleDelete(deck)} className='create-submit-btn'>DELETE</button>
-        </td>
-
-         {/* <td>
-        <Delete onClick={
-    ()=>
-      this.handleClick(deck._id)
-      // take off the quotes on cardId above
-
-    } />
-        </td>
-       </tr> */}
+                      <td>
+                        <button onClick={() => this.handleDelete(deck._id)} className='create-submit-btn'>DELETE</button>
+                      </td>
 
 
-         <td>
-          <Cards />
-        </td>
-        </>}
-         </tr>
-         </>
-      )
-    })
-
-  }
-</tbody>
-</table>
+                      <td>
+                       <Cards />
+                      </td>
+                    {/* </> */}
+                  {/* } */}
+                </tr>
+              </>
+            )
+          })}
+        </tbody>
+      </table>
     </div>
 
     </>
