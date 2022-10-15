@@ -27,7 +27,7 @@ class Decks extends Component {
     //expect data to come back as an array? - need to just have the name
 decks: [],
 //set this as a boolean so we can change it on lines 103- 106
-winner: false,
+// winner: false,
 deleted: ''
 }
  }
@@ -84,15 +84,23 @@ handleUpdateDeck = (deck) => {
       'Content-Type': 'application/json'
     }
  }).then(r => {
-  this.setState({ winner : true})
+  const copyDecks = [...this.state.decks];
+  this.setState({ decks : copyDecks})
  })}
 
- handleDelete = (deck) => {
+ handleDelete = (id) => {
    console.log('inside handle Delete function');
-   fetch('https://topdeck-project3.herokuapp.com/decks/' + deck._id, {
+   fetch('https://topdeck-project3.herokuapp.com/decks/' + id, {
      method: 'DELETE'
    })
-   .then((response) => this.setState({deleted:true}))
+   .then((response) => {
+    const copyDecks = [...this.state.decks];
+    const deckIndex = this.state.decks.findIndex(
+      (deck) => deck._id === id
+    )
+    copyDecks.splice(deckIndex, 1)
+    this.setState({ decks : copyDecks})
+   })
    .then((data) => console.log(data))
  }
 
@@ -114,16 +122,17 @@ handleUpdateDeck = (deck) => {
                   {/* {this.state.deleted ? '' : */}
                     {/* <> */}
                     {/* if value of winner is true render winner. User clicks on deck name and deck name is changed to winner */}
-                    { this.state.winner ? <td
+                    {/* { this.state.winner ? <td
                       onClick={()=> this.handleUpdateDeck(deck)}
                      >{'winner'}
-                      </td>: <td
-                      onClick={()=> this.handleUpdateDeck(deck)}
+                      </td>:  */}
+                      <td onClick={()=> this.handleUpdateDeck(deck)}
                        >{deck.name}
-                      </td> }
+                      </td> 
+                      {/* } */}
 
                       <td>
-                        <button onClick={() => this.handleDelete(deck)} className='create-submit-btn'>DELETE</button>
+                        <button onClick={() => this.handleDelete(deck._id)} className='create-submit-btn'>DELETE</button>
                       </td>
 
 
