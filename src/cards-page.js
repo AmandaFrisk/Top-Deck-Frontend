@@ -52,7 +52,7 @@ useEffect(() => {
           {!data ? (
                   <h3>browsing...</h3>
               ) : (
-                  <div className='card-container'>
+                  <div className='card-container' key={pokemon.id}>
                       {data.map((pokemon) => (
                         <td>
                           <PokeCard pokemon={pokemon}></PokeCard>

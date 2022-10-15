@@ -80,7 +80,7 @@ componentDidMount(){
     return (
       <>
       <form onSubmit={this.handleSubmit}>
-      <input type="submit" value="Add to deck" className='create-submit-btn' />
+       <input type="submit" value="Add to deck" className='create-submit-btn'/>
       </form>
       </>
     )

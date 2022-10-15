@@ -9,12 +9,13 @@ import Cards from '../cards-page'
 // import Delete from './delete-card'
 let baseURL = ''
 
-if (process.env.NODE_ENV === 'development') {
-  baseURL = 'http://localhost:3002'
-} else {
+// if (process.env.NODE_ENV === 'development') {
+//   baseURL = 'http://localhost:3002'
+// } else {
   baseURL = 'https://topdeck-project3.herokuapp.com'
-}
+// }
 
+let dataS = []
 
 console.log('current base URL:', baseURL)
 
@@ -50,7 +51,8 @@ componentDidMount(){
     console.log("get deck data", data);
     //setState to be that data
     this.setState({ deck: data.lists });
-  console.log(data.lists)
+    console.log(data)
+    return dataS = data.lists
    });
  }
 
@@ -62,6 +64,7 @@ componentDidMount(){
   // copyName.unshift(deck);
   copyName.unshift(deck);
   this.setState({name: copyName});
+  console.log(dataS)
 };
 
 handleUpdateDeck = (deck) => {
@@ -92,54 +95,43 @@ handleUpdateDeck = (deck) => {
   return (
     <>
     <div className='DeckList'>
- <CreateForm  handleAddDeck={this.handleAddDeck}/>
+      <CreateForm  handleAddDeck={this.handleAddDeck}/>
 
- <h1>DeckList</h1>
-  <table>
-<tbody>
-  { this.state.name.map((deck) => {
-      return (
-        <>
+      <h1>DeckList</h1>
+      <table>
+        <tbody>
+          { dataS.map((deck) => {
+            return (
+              <>
 
-        <tr key={deck._id} >
-        {this.state.deleted ? '' :
-        <>
-        {/* if value of winner is true render winner. User clicks on deck name and deck name is changed to winner */}
-        { this.state.winner ? <td
-          onClick={()=> this.handleUpdateDeck(deck)}
-          >{'winner'}
-        </td>: <td
-          onClick={()=> this.handleUpdateDeck(deck)}
-          >{deck.name}
-        </td> }
+                <tr key={deck._id} >
+                  {/* {this.state.deleted ? '' : */}
+                    {/* <> */}
+                    {/* if value of winner is true render winner. User clicks on deck name and deck name is changed to winner */}
+                    { this.state.winner ? <td
+                      onClick={()=> this.handleUpdateDeck(deck)}
+                     >{'winner'}
+                      </td>: <td
+                      onClick={()=> this.handleUpdateDeck(deck)}
+                       >{deck.name}
+                      </td> }
 
-        <td>
-          <button onClick={() => this.handleDelete(deck)} className='create-submit-btn'>DELETE</button>
-        </td>
-
-         {/* <td>
-        <Delete onClick={
-    ()=>
-      this.handleClick(deck._id)
-      // take off the quotes on cardId above
-
-    } />
-        </td>
-       </tr> */}
+                      <td>
+                        <button onClick={() => this.handleDelete(deck)} className='create-submit-btn'>DELETE</button>
+                      </td>
 
 
-         <td>
-          <Cards />
-        </td>
-        </>}
-         </tr>
-         </>
-      )
-    })
-
-  }
-</tbody>
-</table>
+                      <td>
+                       <Cards />
+                      </td>
+                    {/* </> */}
+                  {/* } */}
+                </tr>
+              </>
+            )
+          })}
+        </tbody>
+      </table>
     </div>
 
     </>
